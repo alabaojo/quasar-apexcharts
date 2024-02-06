@@ -16,7 +16,6 @@ if (!bucketName || !objectKey) {
 }
 
 // Generate a presigned URL
-async function generatePresignedUrl() {
   const s3Client = new S3Client({ region: region })
   // Create a GetObjectCommand
   const getObjectCommand = new GetObjectCommand({
@@ -24,20 +23,7 @@ async function generatePresignedUrl() {
     Key: objectKey
   })
 
-  try {
-    // Generate a presigned URL
-    const presignedUrl = await getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }); // Set expiresIn to the desired expiration time in seconds
-
-    // The presigned URL is now resolved and can be used
-    console.log("Presigned URL:", presignedUrl);
-
-    // Add your logic here to use the presigned URL as needed
-  } catch (error) {
-    // Handle errors appropriately
-    console.error("Error generating presigned URL:", error);
-  }
-}
 
 // Call the function to generate and use the presigned URL
-#const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
 console.log('Presigned URL:', presignedUrl)
