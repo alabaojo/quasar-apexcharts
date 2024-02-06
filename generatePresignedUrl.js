@@ -6,7 +6,6 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 // Configure the S3 client
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
-const region = process.argv[4]
 
 if (!bucketName || !objectKey) {
   console.log(bucketName)
