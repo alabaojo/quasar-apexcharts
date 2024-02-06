@@ -1,6 +1,5 @@
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-const myVariable = process.env.MY_VARIABLE || 'default_value';
 const awsRegion = process.env.AWS_REGION || 'us-east-1'
 const awsAccessId = process.env.AWS_ACCESS_ID
 const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
