@@ -25,5 +25,19 @@ if (!bucketName || !objectKey) {
 
 
 // Call the function to generate and use the presigned URL
-const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+  .then((presignedUrl) => {
+    // Introduce a 12-second delay
+    setTimeout(() => {
+      // Log the presigned URL after the delay
+      console.log("Presigned URL:", presignedUrl);
+
+      // Add your logic here to use the presigned URL as needed
+    }, 12000); // Wait 12 seconds before logging
+  })
+  .catch((error) => {
+    // Handle errors appropriately
+    console.error("Error generating presigned URL:", error);
+});
+#const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
 console.log('Presigned URL:', presignedUrl)
