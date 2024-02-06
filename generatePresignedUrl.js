@@ -8,7 +8,7 @@ const objectKey = process.argv[3]
 const params = {
   Bucket: bucketName,
   Key: objectKey,
-  Expires: 3600,
+  Expires: 3600
 }
 
 const presignedUrl = s3.getSignedUrl('putObject', params)
