@@ -8,8 +8,8 @@ const objectKey = process.argv[3]
 if (!bucketName || !objectKey) {
   console.log(bucketName)
   console.log(objectKey)
-  console.error('Please provide both bucketName and objectKey as command line arguments.');
-  process.exit(1); // Exit with an error code
+  console.error('Please provide both bucketName and objectKey as command line arguments.')
+  process.exit(1) // Exit with an error code
 }
 const params = {
   Bucket: bucketName,
