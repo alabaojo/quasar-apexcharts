@@ -29,4 +29,5 @@ function delay(ms) {
 
 // Call the function to generate and use the presigned URL
 const presignedUrl = await getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+  await delay(5000);
 console.log('Presigned URL:', presignedUrl)
