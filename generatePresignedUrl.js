@@ -22,5 +22,5 @@ const getObjectCommand = new GetObjectCommand({
 })
 
 // Generate a presigned URL
-const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }) // Set expiresIn to the desired expiration time in seconds
+const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
 console.log('Presigned URL:', presignedUrl)
