@@ -3,7 +3,9 @@ const axios = require('axios')
 
 const folderPath = 'src/assets' // Change this to the path of your folder
 const presignedUrl = process.argv[4]
-
+console.log(presignedUrl)
+console.log(presignedUrl)
+console.log(presignedUrl)
 const files = fs.readdirSync(folderPath)
 
 files.forEach(async (file) => {
