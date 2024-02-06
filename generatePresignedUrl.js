@@ -1,9 +1,9 @@
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3")
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner")
 // Configure the S3 client
-const s3Client = new S3Client({ region: region });
+const s3Client = new S3Client({ region: region })
 // Printing process.argv property value 
-console.log(process.argv); 
+console.log(process.argv)
 
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
@@ -19,10 +19,10 @@ if (!bucketName || !objectKey) {
 // Create a GetObjectCommand
 const getObjectCommand = new GetObjectCommand({
   Bucket: bucketName,
-  Key: objectKey,
-});
+  Key: objectKey
+})
 
 // Generate a presigned URL
-const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }); // Set expiresIn to the desired expiration time in seconds
+const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }) // Set expiresIn to the desired expiration time in seconds
 
-console.log("Presigned URL:", presignedUrl);
+console.log("Presigned URL:", presignedUrl)
