@@ -13,8 +13,8 @@ files.forEach(async (file) => {
   try {
     await axios.put(presignedUrl, fileContent, {
       headers: {
-        'Content-Type': 'application/octet-stream',
-      },
+        'Content-Type': 'application/octet-stream'
+      }
     })
     console.log(`Uploaded ${file} to S3`)
   } catch (error) {
