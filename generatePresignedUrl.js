@@ -13,4 +13,4 @@ const params = {
 
 const presignedUrl = s3.getSignedUrl('putObject', params)
 
-console.log('Pre-signed URL:', presignedUrl)
+console.log('Pre-signed URL:' presignedUrl)
