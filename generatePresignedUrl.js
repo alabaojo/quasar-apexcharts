@@ -10,7 +10,7 @@ if (!bucketName || !objectKey) {
   console.log(bucketName)
   console.log(objectKey)
   console.error('Please provide both bucketName and objectKey as command line arguments.')
-  process.exit(1) // Exit with an error code
+  process.exit(1)
 }
 const s3Client = new S3Client({ region: region })
 // Printing process.argv property value 
