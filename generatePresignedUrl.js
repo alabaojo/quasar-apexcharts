@@ -2,8 +2,6 @@ import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 // import { PutObjectCommand } from '@aws-sdk/client-s3'
 // Configure the S3 client
-
-
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
 const region = process.argv[4]
@@ -25,5 +23,4 @@ const getObjectCommand = new GetObjectCommand({
 
 // Generate a presigned URL
 const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }) // Set expiresIn to the desired expiration time in seconds
-
 console.log('Presigned URL:', presignedUrl)
