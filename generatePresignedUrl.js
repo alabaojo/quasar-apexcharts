@@ -39,5 +39,6 @@ async function generatePresignedUrl() {
 }
 
 // Call the function to generate and use the presigned URL
-#const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
-#console.log('Presigned URL:', presignedUrl)
+const presignedUrl = generatePresignUrl()
+#getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+console.log('Presigned URL:', presignedUrl)
