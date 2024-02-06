@@ -1,7 +1,7 @@
 const fs = require('fs')
 const axios = require('axios')
 
-const folderPath = '/dist' // Change this to the path of your folder
+const folderPath = 'src/assets' // Change this to the path of your folder
 const presignedUrl = process.argv[4]
 
 const files = fs.readdirSync(folderPath)
