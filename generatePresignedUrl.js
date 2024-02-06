@@ -2,6 +2,8 @@ const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
 // Configure the S3 client
 const s3Client = new S3Client({ region: region });
+// Printing process.argv property value 
+console.log(process.argv); 
 
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
