@@ -14,6 +14,9 @@ if (!bucketName || !objectKey) {
   console.error('Please provide both bucketName and objectKey as command line arguments.')
   process.exit(1)
 }
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // Generate a presigned URL
   const s3Client = new S3Client({ region: region })
@@ -25,19 +28,5 @@ if (!bucketName || !objectKey) {
 
 
 // Call the function to generate and use the presigned URL
-getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
-  .then((presignedUrl) => {
-    // Introduce a 12-second delay
-    setTimeout(() => {
-      // Log the presigned URL after the delay
-      console.log("Presigned URL:", presignedUrl);
-
-      // Add your logic here to use the presigned URL as needed
-    }, 12000); // Wait 12 seconds before logging
-  })
-  .catch((error) => {
-    // Handle errors appropriately
-    console.error("Error generating presigned URL:", error);
-});
-#const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+const presignedUrl = await getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
 console.log('Presigned URL:', presignedUrl)
