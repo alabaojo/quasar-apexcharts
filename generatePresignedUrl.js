@@ -18,7 +18,8 @@ function delay(ms) {
 }
 
 // Generate a presigned URL
-  const s3Client = new S3Client({ region: region })
+  const s3Client = new S3Client()
+ //const s3Client = new S3Client({ region: region })
   // Create a GetObjectCommand
   const getObjectCommand = new GetObjectCommand({
     Bucket: bucketName,
