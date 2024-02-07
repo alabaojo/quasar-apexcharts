@@ -4,7 +4,7 @@ const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 const awsRegion = process.env.AWS_REGION || 'us-east-1'
 const awsAccessId = process.env.AWS_ACCESS_ID
 const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
-
+console.log(process.env)
 const s3Client = new S3Client({
   region: awsRegion,
   credentials: {
