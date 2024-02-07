@@ -43,7 +43,7 @@ const zipFilePath = '/app/dist/spa.zip';
 zipDirectory(folderPath, zipFilePath)
   .then(() => {
     console.log('Directory zipped successfully');
-
+    console.log(ls -la)
     // Read the zip file content
     const zipFileContent = fs.readFileSync(zipFilePath);
      console.log("S§PRESIGNDURL node MI NI. ", s3PresignedUrl);
