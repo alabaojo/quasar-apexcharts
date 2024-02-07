@@ -2,7 +2,7 @@ const fs = require('fs');
 const archiver = require('archiver');
 const axios = require('axios');
 const dotenv = require('dotenv').config();
-const folderPath = '/app/dist/spa';:
+const folderPath = '/app/dist/spa';
 //const presignedUrl = process.argv[2];
 //console.log(presignedUrl);
 
