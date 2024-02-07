@@ -78,8 +78,7 @@ async function uploadZipToS3() {
     process.stdout.write(presignedUrl);
     process.env.S3_PRESIGNED_URL = presignedUrl;
     console.log(process.env.S3_PRESIGNED_URL);
-    
-    return presignedUrl;
+       // return presignedUrl;
   } catch (error) {
     console.error('Error generating presigned URL:', error);
   }
