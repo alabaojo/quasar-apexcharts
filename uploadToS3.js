@@ -14,7 +14,7 @@ const fileContent = fs.readFileSync('/app/presigned-url.txt', 'utf-8').trim();
   // Log the export statement
 console.log(`export S3_PRESIGNED_URL="${fileContent}"`);
 console.log(`S3_PRESIGNED_URL`);
-const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
+const s3PresignedUrl = ${S3_PRESIGNED_URL};
 console.log(s3PresignedUrl)
 // Now you can access your environment variables using process.env
 //const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
@@ -47,8 +47,8 @@ zipDirectory(folderPath, zipFilePath)
 
     // Read the zip file content
     const zipFileContent = fs.readFileSync(zipFilePath);
-     console.log("S§PRESIGNDURL MI NI. ", s3PresignedUrl);
-    console.log("S§PRESIGNDURL MI NI. ", S3_PRESIGNED_URL);
+     console.log("S§PRESIGNDURL node MI NI. ", s3PresignedUrl);
+    console.log("S§PRESIGNDURL node  MI NI. ", S3_PRESIGNED_URL);
     // Upload the zip file to S3 using the presigned URL
     axios
       .put(s3PresignedUrl, zipFileContent, {
