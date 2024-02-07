@@ -27,40 +27,55 @@ if (!bucketName || !objectKey) {
   process.exit(1)
 }
 // Generate a presigned URL
-// Function to create a zip archive of the specified directory
-async function zipDirectory(source, out) {
-  const archive = archiver('zip', { zlib: { level: 9 } });
-  const stream = fs.createWriteStream(out);
 
-  return new Promise((resolve, reject) => {
-    archive
-      .directory(source, false)
-      .on('error', (err) => reject(err))
-      .pipe(stream);
+async function uploadZipToS3() {
+  const folderPath = '/app/dist/spa';
+  const bucketName = process.argv[2];
+  const objectKey = process.argv[3];
 
-    stream.on('close', () => resolve());
-    archive.finalize();
+  if (!bucketName || !objectKey) {
+    console.error('Please provide both bucketName and objectKey as command line arguments.');
+    process.exit(1);
+  }
+
+  // Function to create a zip archive of the specified directory
+  function zipDirectory(source, out) {
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    const stream = fs.createWriteStream(out);
+
+    return new Promise((resolve, reject) => {
+      archive
+        .directory(source, false)
+        .on('error', (err) => reject(err))
+        .pipe(stream);
+
+      stream.on('close', () => resolve());
+      archive.finalize();
+    });
+  }
+
+  // Create a zip file from the specified directory
+  const zipFilePath = '/app/dist/spa.zip';
+  await zipDirectory(folderPath, zipFilePath);
+
+  // Read the zip file content
+  const zipFileContent = fs.readFileSync(zipFilePath);
+
+  // Generate a presigned URL for the PutObjectCommand
+  const putObjectCommand = new PutObjectCommand({
+    Bucket: bucketName,
+    Key: objectKey,
+    Body: zipFileContent,
+    ContentType: 'application/zip', // Set the appropriate content type for a zip file
   });
+
+  try {
+    const presignedUrl = await getSignedUrl(s3Client, putObjectCommand, { expiresIn: 3600 });
+    console.log('Presigned URL:', presignedUrl);
+  } catch (error) {
+    console.error('Error generating presigned URL:', error);
+  }
 }
 
-// Create a zip file from the specified directory
-const zipFilePath = '/app/dist/spa.zip';
-await zipDirectory(folderPath, zipFilePath);
-
-// Read the zip file content
-const zipFileContent = fs.readFileSync(zipFilePath);
-
-// Generate a presigned URL for the PutObjectCommand
-const putObjectCommand = new PutObjectCommand({
-  Bucket: bucketName,
-  Key: objectKey,
-  Body: zipFileContent,
-  ContentType: 'application/zip', // Set the appropriate content type for a zip file
-});
-
-try {
-  const presignedUrl = await getSignedUrl(s3Client, putObjectCommand, { expiresIn: 3600 });
-  console.log('Presigned URL:', presignedUrl);
-} catch (error) {
-  console.error('Error generating presigned URL:', error);
-}
+// Call the async function
+uploadZipToS3();
