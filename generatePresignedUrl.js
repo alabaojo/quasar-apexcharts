@@ -6,6 +6,9 @@ const archiver = require('archiver');
 const awsRegion = process.env.AWS_REGION || 'us-east-1'
 const awsAccessId = process.env.AWS_ACCESS_ID
 const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+
+const objectKeyToGet = 'sample.txt';
+
 console.log(process.env)
 const s3Client = new S3Client({
   region: awsRegion,
