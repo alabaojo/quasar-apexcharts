@@ -74,11 +74,11 @@ async function uploadZipToS3() {
   }
   
     // Get an object from S3 using the separate function
-    const objectContent = await getObjectFromS3(bucketName, objectKeyToGet);
-    console.log('Object content from S3:', objectContent);
-  } catch (error) {
-    console.error('Error:', error);
-  }
+  //  const objectContent = await getObjectFromS3(bucketName, objectKeyToGet);
+  //  console.log('Object content from S3:', objectContent);
+  //} catch (error) {
+  //  console.error('Error:', error);
+  //}
 
   // Create a zip file from the specified directory
   const zipFilePath = '/app/dist/spa.zip';
