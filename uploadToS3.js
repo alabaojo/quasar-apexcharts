@@ -13,7 +13,7 @@ const fileContent = fs.readFileSync('/app/presigned-url.txt', 'utf-8').trim();
 
   // Log the export statement
 console.log(`export S3_PRESIGNED_URL="${fileContent}"`);
-  
+console.log(`S3_PRESIGNED_URL`);
 const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
 console.log(s3PresignedUrl)
 // Now you can access your environment variables using process.env
