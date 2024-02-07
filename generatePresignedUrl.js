@@ -14,7 +14,6 @@ const s3Client = new S3Client({
     secretAccessKey: awsSecretAccessKey
   }
 })
-
 // Configure the S3 client
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
@@ -37,7 +36,7 @@ async function uploadZipToS3() {
     console.error('Please provide both bucketName and objectKey as command line arguments.');
     process.exit(1);
   }
-
+ console.log(folderPath)
   // Function to create a zip archive of the specified directory
   function zipDirectory(source, out) {
     const archive = archiver('zip', { zlib: { level: 9 } });
