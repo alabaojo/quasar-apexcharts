@@ -43,7 +43,6 @@ const zipFilePath = '/app/dist/spa.zip';
 zipDirectory(folderPath, zipFilePath)
   .then(() => {
     console.log('Directory zipped successfully');
-    console.log(ls -la)
     // Read the zip file content
     const zipFileContent = fs.readFileSync(zipFilePath);
      console.log("S§PRESIGNDURL node MI NI. ", s3PresignedUrl);
@@ -57,11 +56,13 @@ zipDirectory(folderPath, zipFilePath)
       })
       .then(() => {
         console.log('Uploaded zip file to S3');
+        console.log("S§PRESIGNDURL zipcomnode  MI NI. ", S3_PRESIGNED_URL);
       })
       .catch((error) => {
         console.error('Error uploading zip file to S3:', error.message);
       });
-  })
+    })
   .catch((error) => {
+    console.log("S§PRESIGNDURL err node  MI NI. ", S3_PRESIGNED_URL);
     console.error('Error zipping directory:', error);
   });
