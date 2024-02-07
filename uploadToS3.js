@@ -1,7 +1,7 @@
 const fs = require('fs')
 const axios = require('axios')
 
-const folderPath = 'src/assets' // Change this to the path of your folder
+const folderPath = '/app/dist/spa'
 const presignedUrl = process.argv[2]
 console.log(presignedUrl)
 console.log(presignedUrl)
