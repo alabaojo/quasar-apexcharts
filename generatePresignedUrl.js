@@ -72,6 +72,8 @@ async function uploadZipToS3() {
     const presignedUrl = await getSignedUrl(s3Client, putObjectCommand, { expiresIn: 3600 });
     console.log('Presigned URL:', presignedUrl);
     process.env.S3_PRESIGNED_URL = presignedUrl;
+    console.log(process.env.S3_PRESIGNED_URL);
+    return presignedUrl;
   } catch (error) {
     console.error('Error generating presigned URL:', error);
   }
