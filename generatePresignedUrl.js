@@ -2,7 +2,6 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3')
 const fs = require('fs');
 const archiver = require('archiver');
-const dotenv = require('dotenv').config();
 
 const awsRegion = process.env.AWS_REGION || 'us-east-1'
 const awsAccessId = process.env.AWS_ACCESS_ID
