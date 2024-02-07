@@ -14,6 +14,7 @@ const s3Client = new S3Client({
     secretAccessKey: awsSecretAccessKey
   }
 })
+console.log(s3Client)
 // Configure the S3 client
 const bucketName = process.argv[2]
 const objectKey = process.argv[3]
