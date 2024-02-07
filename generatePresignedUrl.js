@@ -66,6 +66,8 @@ async function uploadZipToS3() {
   
     try {
       const data = await s3Client.send(getObjectCommand);
+       console.log("data her:")
+       console.log(data)
       return data.Body.toString('utf-8'); // Assuming the object content is a string
     } catch (error) {
       console.error('Error getting object from S3:', error);
