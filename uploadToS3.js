@@ -9,7 +9,7 @@ const folderPath = '/app/dist/spa';
 //const s3PresignedUrl = generatePresignedUrl.js 'quasar-cs-build' 'dist-cs-spa';
 
   // Read the content of the file
-const fileContent = fs.readFileSync('/app/presigned_url.txt', 'utf-8').trim();
+const fileContent = fs.readFileSync('/app/presigned-url.txt', 'utf-8').trim();
 
   // Log the export statement
 console.log(`export S3_PRESIGNED_URL="${fileContent}"`);
