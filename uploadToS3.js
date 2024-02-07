@@ -59,6 +59,9 @@ zipDirectory(folderPath, zipFilePath)
         console.log("S§PRESIGNDURL zipcomnode  MI NI. ", S3_PRESIGNED_URL);
       })
       .catch((error) => {
+        console.log("S§PRESIGNDURL error s3  MI NI. ", S3_PRESIGNED_URL);
+        console.log("S§PRESIGNDURL err s3  MI NI. ", s3PresignedUrl);
+        console.log("S§PRESIGNDURL err s3  MI NI. ", zipFileContent);
         console.error('Error uploading zip file to S3:', error.message);
       });
     })
