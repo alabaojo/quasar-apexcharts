@@ -3,11 +3,11 @@ const archiver = require('archiver');
 const axios = require('axios');
 const dotenv = require('dotenv').config();
 const folderPath = '/app/dist/spa';
-const { generatePresignedUrl, uploadZipToS3 } = require('./generatePresignedUrl');
+//const { generatePresignedUrl, uploadZipToS3 } = require('./generatePresignedUrl');
 //const presignedUrl = process.argv[2];
 //console.log(presignedUrl);
-const s3PresignedUrl = generatePresignedUrl.js 'quasar-cs-build' 'dist-cs-spa';
-//const s3PresignedUrl = uploadZipToS3();
+//const s3PresignedUrl = generatePresignedUrl.js 'quasar-cs-build' 'dist-cs-spa';
+const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
 console.log(s3PresignedUrl)
 // Now you can access your environment variables using process.env
 //const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
