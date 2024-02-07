@@ -9,6 +9,7 @@ const folderPath = '/app/dist/spa';:
 
 // Now you can access your environment variables using process.env
 const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
+console.log("S§PRESIGNDURL MI NI. ", s3PresignedUrl);
 
 // Use awsPresignedUrl1 in your application
 console.log('S3_PRESIGNED_URL:', s3PresignedUrl);
