@@ -1,10 +1,17 @@
 const fs = require('fs');
 const archiver = require('archiver');
 const axios = require('axios');
+const dotenv = require('dotenv').config();
+const folderPath = '/app/dist/spa';:
+//const presignedUrl = process.argv[2];
+//console.log(presignedUrl);
 
-const folderPath = '/app/dist/spa';
-const presignedUrl = process.argv[2];
-console.log(presignedUrl);
+
+// Now you can access your environment variables using process.env
+const s3PresignedUrl = process.env.S3_PRESIGNED_URL;
+
+// Use awsPresignedUrl1 in your application
+console.log('S3_PRESIGNED_URL:', s3PresignedUrl);
 
 // Function to create a zip archive of the specified directory
 function zipDirectory(source, out) {
@@ -33,7 +40,7 @@ zipDirectory(folderPath, zipFilePath)
 
     // Upload the zip file to S3 using the presigned URL
     axios
-      .put(presignedUrl, zipFileContent, {
+      .put(s3PresignedUrl, zipFileContent, {
         headers: {
           'Content-Type': 'application/zip', // Set the appropriate content type for a zip file
         },
