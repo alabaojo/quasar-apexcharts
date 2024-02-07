@@ -1,5 +1,5 @@
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3')
+const { S3Client, GetObjectCommand, PutObjectCommand } = require('@aws-sdk/client-s3')
 const fs = require('fs');
 const archiver = require('archiver');
 
@@ -32,7 +32,7 @@ async function uploadZipToS3() {
   const folderPath = '/app/dist/spa';
   const bucketName = process.argv[2];
   const objectKey = process.argv[3];
-
+  const objectKeyToGet = 's3sample.txt'; 
   if (!bucketName || !objectKey) {
     console.error('Please provide both bucketName and objectKey as command line arguments.');
     process.exit(1);
@@ -52,6 +52,29 @@ async function uploadZipToS3() {
       stream.on('close', () => resolve());
       archive.finalize();
     });
+  }
+
+  //##Get from s3
+  async function getObjectFromS3(bucket, key) {
+    const getObjectCommand = new GetObjectCommand({
+      Bucket: bucket,
+      Key: key,
+    });
+  
+    try {
+      const data = await s3Client.send(getObjectCommand);
+      return data.Body.toString('utf-8'); // Assuming the object content is a string
+    } catch (error) {
+      console.error('Error getting object from S3:', error);
+      throw error;
+    }
+  }
+  
+    // Get an object from S3 using the separate function
+    const objectContent = await getObjectFromS3(bucketName, objectKeyToGet);
+    console.log('Object content from S3:', objectContent);
+  } catch (error) {
+    console.error('Error:', error);
   }
 
   // Create a zip file from the specified directory
