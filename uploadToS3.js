@@ -21,7 +21,6 @@ console.log(s3PresignedUrl)
 console.log("S§PRESIGNDURL MI NI. ", s3PresignedUrl);
 process.env.S3_PRESIGNED_URL = s3PresignedUrl;
 // Use awsPresignedUrl1 in your application
-console.log('S3_PRESIGNED_URL:', s3PresignedUrl);
 
 // Function to create a zip archive of the specified directory
 function zipDirectory(source, out) {
