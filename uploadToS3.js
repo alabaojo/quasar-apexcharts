@@ -45,7 +45,7 @@ zipDirectory(folderPath, zipFilePath)
     console.log('Directory zipped successfully');
     // Read the zip file content
     const zipFileContent = fs.readFileSync(zipFilePath);
-     console.log("S§PRESIGNDURL node MI NI. ", s3PresignedUrl);
+     console.log("file path node MI NI. ", zipFilePath);
     console.log("S§PRESIGNDURL node  MI NI. ", S3_PRESIGNED_URL);
     // Upload the zip file to S3 using the presigned URL
     axios
