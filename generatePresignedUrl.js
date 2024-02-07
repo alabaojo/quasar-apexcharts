@@ -121,4 +121,10 @@ async function uploadZipToS3() {
   }
 
 // Call the async function
-uploadZipToS3();
+
+const objectContent = await getObjectFromS3(quasar-cs-build, sample.txt);
+    console.log('Object content from S3:', objectContent);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+uploadZipToS3();    // Get an object from S3 using the separate function
