@@ -1,41 +1,41 @@
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
 
-async function generatePresignedUrl() {
-  // Configure the S3 client
-  const s3Client = new S3Client({ region: "your-s3-region" });
+const awsRegion = process.env.AWS_REGION || 'us-east-1'
+const awsAccessId = process.env.AWS_ACCESS_ID
+const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+console.log(process.env)
+const s3Client = new S3Client({
+  region: awsRegion,
+  credentials: {
+    accessKeyId: awsAccessId,
+    secretAccessKey: awsSecretAccessKey
+  }
+})
 
-  // Specify the S3 bucket and object key
-  const bucketName = "your-s3-bucket";
-  const objectKey = "your-s3-object-key";
+// Configure the S3 client
+const bucketName = process.argv[2]
+const objectKey = process.argv[3]
 
+if (!bucketName || !objectKey) {
+  console.log(bucketName)
+  console.log(objectKey)
+  console.error('Please provide both bucketName and objectKey as command line arguments.')
+  process.exit(1)
+}
+
+// Generate a presigned URL
+(async () => {
   // Create a GetObjectCommand
   const getObjectCommand = new GetObjectCommand({
     Bucket: bucketName,
-    Key: objectKey,
-  });
-
-  return new Promise((resolve, reject) => {
-    // Simulate an asynchronous operation with setTimeout
-    setTimeout(() => {
-      // Generate a presigned URL
-      const presignedUrl = getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 }); // Set expiresIn to the desired expiration time in seconds
-
-      // Resolve the promise with the presigned URL
-      resolve(presignedUrl);
-    }, 1000); // Adjust the delay as needed
-  });
-}
-
-// Usage example
-generatePresignedUrl()
-  .then((presignedUrl) => {
-    // The presigned URL is now resolved and can be used
-    console.log("Presigned URL:", presignedUrl);
-
-    // Add your logic here to use the presigned URL as needed
+    Key: objectKey
   })
-  .catch((error) => {
-    // Handle errors appropriately
-    console.error("Error generating presigned URL:", error);
-});
+
+  try {
+    const presignedUrl = await getSignedUrl(s3Client, getObjectCommand, { expiresIn: 3600 })
+    console.log('Presigned URL:', presignedUrl)
+  } catch (error) {
+    console.error('Error generating presigned URL:', error)
+  }
+})()
