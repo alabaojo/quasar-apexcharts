@@ -96,11 +96,17 @@ async function uploadZipToS3() {
   const zipFileContent = fs.readFileSync(zipFilePath);
 
   // Generate a presigned URL for the PutObjectCommand
-  const putObjectCommand = new PutObjectCommand({
+  const putObjectCommandOrig = new PutObjectCommand({
     Bucket: bucketName,
     Key: objectKey,
     Body: zipFileContent,
     ContentType: 'application/zip', // Set the appropriate content type for a zip file
+  });
+  const putObjectCommand = new PutObjectCommand({
+    Bucket: bucketName,
+    Key: objectKey,
+    Body: test.txt,
+    ContentType: 'application/txt', // Set the appropriate content type for a zip file
   });
 
   try {
