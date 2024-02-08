@@ -4,8 +4,8 @@ const fs = require('fs');
 const archiver = require('archiver');
 
 const awsRegion = process.env.AWS_REGION || 'us-east-1'
-const awsAccessId = process.env.AWS_ACCESS_ID || 'AKIATASTZ5HHTAUDQYWR'
-const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || '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'
+const awsAccessId = process.env.AWS_ACCESS_ID
+const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
 const objectKeyToGet = 'sample.txt';
 
