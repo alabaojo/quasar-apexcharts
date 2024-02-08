@@ -9,6 +9,12 @@ const awsSecretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
 
 const objectKeyToGet = 'sample.txt';
 
+if (!awsAccessId || !awsSecretAccessKey) {
+  console.log(awsAccessId)
+  console.log(awsSecretAccessKey)
+  console.error('Please provide both awsAccessKey and awsSecretAccessKey as command line arguments.')
+  process.exit(1)
+}
 console.log(process.env)
 const s3Client = new S3Client({
   region: awsRegion,
