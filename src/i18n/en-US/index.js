@@ -50,7 +50,7 @@ export default {
     section_moreAboutVue: 'More about Vue'
   },
   presentation: {
-    title: 'Welcome',
+    title: 'Welcome to CS Run 102',
     subtitle: 'Hello and welcome to Quasar Apexcharts V2!',
     abstract: 'This is a repository aiming to explain how to integrate the ApexCharts library with the Quasar Framework and Vue 3.',
     aboutApexCharts: 'ApexCharts is a modern, open-source JavaScript library that help developers quickly create beautiful data visualizations for web pages. It features several chart types with easily customizable components.',
