@@ -13,7 +13,7 @@ export default function useDriver () {
       {
         // element: '#tour-example',
         popover: {
-          title: 'Bem vindo ao Quasar Apexcharts Examples',
+          title: 'Bem vindo ao Quasar Apexcharts Examples DE V2',
           description: 'Aqui você encontra vários exemplos de implementação do Apexcharts com Vue.js 3 e Quasar Framework.'
         }
       },
